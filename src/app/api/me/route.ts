@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
 
   const payload = await quickAuth.verifyJwt({
     token: authorization.split(' ')[1],
-    domain: (new URL(process.env.NEXT_PUBLIC_URL ?? '')).hostname
+    domain: (new URL(process.env.NEXT_PUBLIC_URL || 'https://frame-v2-1.vercel.app/')).hostname
   })
 
   return Response.json({ fid: Number(payload.sub) });
